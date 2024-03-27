@@ -67,6 +67,15 @@ final class QuestionsViewController: UIViewController {
     deinit {
         print("\(type(of: self)) has been deallocated")
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let resultVC = segue.destination as? ResultViewController else {
+            return
+        }
+        resultVC.answers =  answersChosen
+    }
+    
+    
 }
 
 // MARK: - Private Methods
@@ -94,6 +103,7 @@ private extension QuestionsViewController {
         
         // Show stacks corresponding to question type
         showCurrentAnswers(for: currentQuestion.type)
+        
     }
     
     
